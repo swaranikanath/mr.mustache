@@ -1,0 +1,45 @@
+name: Publish VSIX on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          cd mr-mustache-assistant
+          npm ci || npm install
+
+      - name: Install vsce
+        run: npm install -g vsce
+
+      - name: Package VSIX
+        run: |
+          cd mr-mustache-assistant
+          vsce package
+
+      - name: Upload VSIX as release asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: mr-mustache-assistant/*.vsix
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to Marketplace (if VSCE_TOKEN provided)
+        if: ${{ secrets.VSCE_TOKEN != '' }}
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
+        run: |
+          cd mr-mustache-assistant
+          vsce publish || true

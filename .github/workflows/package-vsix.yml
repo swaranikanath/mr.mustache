@@ -1,0 +1,29 @@
+name: Package VSIX
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
+        working-directory: mr-mustache-assistant
+      - name: Install vsce
+        run: npm install -g vsce
+      - name: Package VSIX
+        run: npx vsce package
+        working-directory: mr-mustache-assistant
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mr-mustache-vsix
+          path: mr-mustache-assistant/*.vsix

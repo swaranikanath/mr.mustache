@@ -1,0 +1,11 @@
+{
+  "name": "mr-mustache-codespace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {},
+  "postCreateCommand": "bash -lc 'set -e; cd /workspaces/mr.mustache/mr-mustache-assistant || true; npm install || true; npm install -g vsce || true; vsce package || true; for f in *.vsix; do if [ -f \"$f\" ]; then code --install-extension \"$f\" || true; fi; done; echo Devcontainer ready'",
+  "customizations": {
+    "vscode": {
+      "extensions": ["your-publisher-name.mr-mustache-assistant"]
+    }
+  }
+}
