@@ -6,8 +6,6 @@
       <span style="font-size: 3em; color: #ffffff;">🤖</span>
       <br>
       <span style="color: #ffffff; font-weight: bold;">Download Mr Mustache AI</span>
-      <br>
-      <span style="color: #cccccc; font-size: 0.9em;">Your Coding Assistant Like Copilot</span>
     </div>
   </a>
 </div>
