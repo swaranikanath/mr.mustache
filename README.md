@@ -32,6 +32,11 @@ code --install-extension ../mr-mustache-assistant-0.0.1.vsix || true
 
 Push to `main` to run the `Build VSIX` workflow which will produce a `mr-mustache-vsix` artifact. Download and install the produced `.vsix`.
 
+Build VSIX in CI
+
+- The repository contains a GitHub Actions workflow that packages the extension and uploads a VSIX artifact: `.github/workflows/build-vsix.yml` (runs on pushes to `main` and manual dispatch).
+- To download the produced VSIX: open the run for the workflow in Actions, select the successful run, and download the `mr-mustache-vsix` artifact. Install the VSIX locally via VS Code → Install from VSIX.
+
 4. Publish to Marketplace (optional)
 
 - Create a publisher and generate a Personal Access Token (PAT) for vsce (named `VSCE_TOKEN`).

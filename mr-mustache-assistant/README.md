@@ -7,6 +7,12 @@ Prerequisites
 - VS Code
 - An OpenAI API key set as environment variable `OPENAI_API_KEY` (or configured in workspace setting `mrMustache.openaiKey`)
 
+Configuration
+- You can set the OpenAI API key via the workspace/user setting `mrMustache.openaiKey` (recommended for per-workspace usage), or export `OPENAI_API_KEY` in your environment.
+
+Offline / Mock mode
+- For development without network access, set the workspace setting `mrMustache.mockResponses` to `true`. The extension will return canned suggestions and example commands instead of calling the OpenAI API.
+
 Quick start
 1. From the project folder:
 

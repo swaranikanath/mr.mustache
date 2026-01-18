@@ -1,8 +1,12 @@
 {
   "name": "mr-mustache-codespace",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {},
-  "postCreateCommand": "bash -lc 'set -e; cd /workspaces/mr.mustache/mr-mustache-assistant || true; npm install || true; npm install -g vsce || true; vsce package || true; for f in *.vsix; do if [ -f \"$f\" ]; then code --install-extension \"$f\" || true; fi; done; echo Devcontainer ready'",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "postCreateCommand": "bash -lc 'set -e; cd /workspaces/mr.mustache/mr-mustache-assistant || true; if command -v npm >/dev/null 2>&1; then npm install || true; if command -v vsce >/dev/null 2>&1; then vsce package || npx --yes @vscode/vsce package || true; else npx --yes @vscode/vsce package || true; fi; for f in *.vsix; do if [ -f \"$f\" ]; then code --install-extension \"$f\" || true; fi; done; fi; echo Devcontainer ready'",
   "customizations": {
     "vscode": {
       "extensions": ["your-publisher-name.mr-mustache-assistant"]

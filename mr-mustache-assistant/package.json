@@ -22,6 +22,22 @@
     "onCommand:mr-mustache.runCommand"
   ],
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Mr Mustache",
+      "properties": {
+        "mrMustache.openaiKey": {
+          "type": "string",
+          "description": "OpenAI API key used by the extension. Alternatively set the OPENAI_API_KEY environment variable.",
+          "default": ""
+        },
+        "mrMustache.mockResponses": {
+          "type": "boolean",
+          "description": "When true, the extension will return canned suggestions instead of calling the OpenAI API (useful for offline development).",
+          "default": false
+        }
+      }
+    },
     "commands": [
       {
         "command": "mr-mustache.suggest",

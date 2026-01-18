@@ -6,23 +6,35 @@ function getOpenAiKey() {
 }
 
 async function callOpenAI(prompt) {
+  const config = vscode.workspace.getConfiguration('mrMustache');
+  const mock = config.get('mockResponses');
+  if (mock) {
+    // return a canned response for offline development/testing
+    return `Suggested improvements:\n- Review function X for edge cases.\n- Run tests with \`$ npm test\`.\n\nSuggested commands:\n\`$ npm install\`\n\`$ npm test\``;
+  }
+
   const key = getOpenAiKey();
   if (!key) {
     throw new Error('OPENAI_API_KEY not set. Set the OPENAI_API_KEY env var or configure mrMustache.openaiKey.');
   }
 
-  const resp = await axios.post('https://api.openai.com/v1/chat/completions', {
-    model: 'gpt-4o-mini',
-    messages: [{ role: 'user', content: prompt }],
-    max_tokens: 1200
-  }, {
-    headers: {
-      'Authorization': `Bearer ${key}`,
-      'Content-Type': 'application/json'
-    }
-  });
+  try {
+    const resp = await axios.post('https://api.openai.com/v1/chat/completions', {
+      model: 'gpt-4o-mini',
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 1200
+    }, {
+      headers: {
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json'
+      }
+    });
 
-  return resp.data.choices && resp.data.choices[0] && resp.data.choices[0].message && resp.data.choices[0].message.content;
+    return resp && resp.data && resp.data.choices && resp.data.choices[0] && resp.data.choices[0].message && resp.data.choices[0].message.content;
+  } catch (err) {
+    const msg = err && err.response && err.response.data ? JSON.stringify(err.response.data) : String(err);
+    throw new Error(`OpenAI request failed: ${msg}`);
+  }
 }
 
 function parseShellCommands(text) {
