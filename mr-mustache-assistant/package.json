@@ -1,7 +1,7 @@
 {
   "name": "mr-mustache-assistant",
   "displayName": "Mr Mustache Assistant",
-  "publisher": "your-publisher-name",
+  "publisher": "swaranika27nath-spec",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.70.0"
@@ -10,7 +10,8 @@
   "scripts": {
     "package": "vsce package || echo 'Install vsce to package extension'",
     "build": "npm run package",
-    "prepare-devcontainer": "npm install && npm install -g vsce || true"
+    "prepare-devcontainer": "npm install && npm install -g vsce || true",
+    "test": "node ./test/extension.test.js"
   },
   "repository": {
     "type": "git",
