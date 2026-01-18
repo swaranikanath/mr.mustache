@@ -38,7 +38,6 @@ async function callOpenAI(prompt) {
 }
 
 function parseShellCommands(text) {
-  // simple heuristic: find fenced codeblock with "bash" or lines starting with $ or simple codeblock
   const commands = [];
   const fenceRegex = /```(?:bash|sh)?\n([\s\S]*?)```/g;
   let m;
@@ -46,15 +45,19 @@ function parseShellCommands(text) {
     const block = m[1].trim();
     block.split('\n').forEach(line => {
       const l = line.trim();
-      if (l && !l.startsWith('#')) commands.push(l.replace(/^\$\s?/, ''));
+      if (l && !l.startsWith('#')) {
+        const cmdMatch = l.match(/^\$\s*(.+)/);
+        if (cmdMatch) commands.push(cmdMatch[1]);
+      }
     });
   }
 
-  // lines starting with $ in plain text
-  text.split('\n').forEach(line => {
-    const t = line.trim();
-    if (t.startsWith('$ ')) commands.push(t.replace(/^\$\s?/, ''));
-  });
+  // Find all $ commands in plain text
+  const plainRegex = /\$\s*([^$\n]+)/g;
+  let match;
+  while ((match = plainRegex.exec(text))) {
+    commands.push(match[1].trim());
+  }
 
   return Array.from(new Set(commands));
 }
@@ -123,4 +126,4 @@ function activate(context) {
 
 function deactivate() {}
 
-module.exports = { activate, deactivate };
+module.exports = { activate, deactivate, callOpenAI, parseShellCommands };

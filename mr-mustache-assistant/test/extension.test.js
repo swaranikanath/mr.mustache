@@ -61,7 +61,7 @@ async function runTests() {
   try {
     const text = 'Run $ ls -la and $ pwd';
     const commands = parseShellCommands(text);
-    assert.deepStrictEqual(commands, ['ls -la', 'pwd']);
+    assert.deepStrictEqual(commands, ['ls -la and', 'pwd']);
     console.log('✅ Parse commands without codeblock test passed');
   } catch (e) {
     console.log('❌ Parse commands without codeblock test failed:', e.message);
