@@ -1,5 +1,10 @@
 # mr.mustache
 
+<div align="center">
+  <p style="font-size: 4em; color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;">🐱</p>
+  <h2 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">Neon Cat Face Logo</h2>
+</div>
+
 This repository contains a prototype VS Code extension, **Mr Mustache Assistant**, that sends code context to the OpenAI API, returns suggestions, and can run suggested shell commands in the integrated terminal.
 
 Quick links
