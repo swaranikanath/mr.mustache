@@ -1,8 +1,15 @@
 # mr.mustache
 
 <div align="center">
-  <p style="font-size: 4em; color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 40px #00ff00;">🐱</p>
-  <h2 style="color: #00ff00; text-shadow: 0 0 10px #00ff00;">Neon Cat Face Logo</h2>
+  <a href="mr-mustache-assistant-0.0.1.vsix" style="text-decoration: none;">
+    <div style="background: linear-gradient(45deg, #00ff00, #00aa00); border-radius: 10px; padding: 20px; box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); display: inline-block;">
+      <span style="font-size: 3em; color: white;">🤖</span>
+      <br>
+      <span style="color: white; font-weight: bold;">Download Mr Mustache AI</span>
+      <br>
+      <span style="color: #cccccc; font-size: 0.9em;">Your Coding Assistant Like Copilot</span>
+    </div>
+  </a>
 </div>
 
 This repository contains a prototype VS Code extension, **Mr Mustache Assistant**, that sends code context to the OpenAI API, returns suggestions, and can run suggested shell commands in the integrated terminal.
