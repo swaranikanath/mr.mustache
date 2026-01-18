@@ -2,10 +2,10 @@
 
 <div align="center">
   <a href="mr-mustache-assistant-0.0.1.vsix" style="text-decoration: none;">
-    <div style="background: linear-gradient(45deg, #00ff00, #00aa00); border-radius: 10px; padding: 20px; box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); display: inline-block;">
-      <span style="font-size: 3em; color: white;">🤖</span>
+    <div style="background: #000000; border: 2px solid #ffffff; border-radius: 10px; padding: 20px; display: inline-block; font-family: monospace;">
+      <span style="font-size: 3em; color: #ffffff;">🤖</span>
       <br>
-      <span style="color: white; font-weight: bold;">Download Mr Mustache AI</span>
+      <span style="color: #ffffff; font-weight: bold;">Download Mr Mustache AI</span>
       <br>
       <span style="color: #cccccc; font-size: 0.9em;">Your Coding Assistant Like Copilot</span>
     </div>
